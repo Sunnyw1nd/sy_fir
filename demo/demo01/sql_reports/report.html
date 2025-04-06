@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>安全扫描报告 - http://localhost/sql/Less-1/</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --critical: #e74c3c;
+            --high: #e67e22;
+            --medium: #f1c40f;
+            --low: #3498db;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        .vuln-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .vuln-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .severity-critical { border-left: 6px solid var(--critical); }
+        .severity-high { border-left: 6px solid var(--high); }
+        .severity-medium { border-left: 6px solid var(--medium); }
+        .severity-low { border-left: 6px solid var(--low); }
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+        .risk-badge {
+            font-size: 1.2rem;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .copy-btn {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.9);
+            border-radius: 4px;
+        }
+        .copy-btn:hover {
+            opacity: 1;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .param-label {
+            font-size: 0.85rem;
+            background: rgba(236, 240, 241, 0.5);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            color: var(--text-secondary);
+        }
+        .card-header {
+            background: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .card-header:hover {
+            background-color: #f8f9fa;
+        }
+        pre {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            font-size: 0.9em;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 240px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        @media print {
+            .vuln-card {
+                box-shadow: none;
+                border: 1px solid #ddd !important;
+            }
+            pre {
+                white-space: pre-wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-lg mt-4 mb-5">
+        <!-- 报告头 -->
+        <header class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h1 class="mb-2 fw-bold">安全扫描报告</h1>
+                <p class="lead text-muted mb-0">扫描目标：http://localhost/sql/Less-1/</p>
+            </div>
+            <button onclick="window.print()" class="btn btn-outline-secondary no-print align-self-start">
+                <i class="bi bi-file-pdf me-2"></i>导出PDF
+            </button>
+        </header>
+
+        <!-- 摘要面板 -->
+        <div class="alert alert-danger mb-5 rounded-lg">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="alert-heading mb-2">🔍 扫描概览</h4>
+                    <div class="d-flex gap-4 text-muted">
+                        <div>
+                            <small>开始时间</small>
+                            <div class="fw-500"></div>
+                        </div>
+                        <div>
+                            <small>扫描耗时</small>
+                            <div class="fw-500">8.60秒</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="risk-badge bg-danger">
+                        严重风险
+                    </div>
+                    <div class="mt-1 small text-muted">风险等级</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计图表 -->
+        <section class="row g-4 mb-5">
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex align-items-center mb-4">
+                            <span class="me-2">📊 风险分布</span>
+                        </h5>
+                        <div class="chart-container">
+                            <canvas id="severityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex align-items-center mb-4">
+                            <span class="me-2">📦 漏洞类型</span>
+                        </h5>
+                        <div class="chart-container">
+                            <canvas id="typeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 漏洞详情 -->
+        <section class="mb-5">
+            <h4 class="mb-4 fw-bold">📋 漏洞详情</h4>
+            <div id="vulnAccordion" class="accordion">
+                
+                <div class="accordion-item vuln-card severity-critical">
+                    <h2 class="accordion-header" id="heading1">
+                        <button class="accordion-button collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-danger me-3">
+                                        CRITICAL
+                                    </span>
+                                    <h5 class="mb-0">SQLI</h5>
+                                </div>
+                                <div>
+                                    
+                                        <span class="param-label">参数: id</span>
+                                    
+                                    
+                                        <span class="ms-2 text-muted small">GET</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#vulnAccordion">
+                        <div class="accordion-body pt-4">
+                            <div class="row g-4">
+                                <!-- 左列 -->
+                                <div class="col-md-6">
+                                    
+                                    <div class="mb-4">
+                                        <h6 class="text-muted mb-3">🔗 目标地址</h6>
+                                        <code class="d-block p-3 bg-light rounded">http://localhost/sql/Less-1/</code>
+                                    </div>
+                                    
+
+                                    
+                                    <div class="mb-4">
+                                        <h6 class="text-muted mb-3">💣 有效载荷</h6>
+                                        <pre class="p-3 bg-light rounded position-relative">
+                                            <span class="copy-btn position-absolute top-0 end-0 m-2 p-1" onclick="copyToClipboard(this)">
+                                                📋 复制
+                                            </span>
+                                            <code>&amp;#x27; OR &amp;#x27;1&amp;#x27;=&amp;#x27;1&amp;#x27;--</code>
+                                        </pre>
+                                    </div>
+                                    
+                                </div>
+
+                                <!-- 右列 -->
+                                <div class="col-md-6">
+                                    <div class="h-100">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">📝 风险描述</h6>
+                                            <div class="p-3 bg-light rounded">
+                                                SQL注入漏洞允许攻击者通过构造恶意查询参数干涉数据库查询，可能导致数据泄露、数据篡改甚至服务器沦陷
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">🛠️ 修复建议</h6>
+                                            <ul class="list-group list-group-flush">
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    使用参数化查询（Prepared Statements）
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    实施严格的输入验证规则
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    启用Web应用防火墙(WAF)
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    定期更新数据库补丁
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    实施最小权限原则，限制数据库用户权限
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="text-muted mb-3">🔗 参考链接</h6>
+                                            <div class="list-group">
+                                                
+                                                <a href="OWASP SQL注入防护手册: https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    OWASP SQL注入防护手册:...
+                                                </a>
+                                                
+                                                <a href="CWE-89: SQL注入" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    CWE-89: SQL注入
+                                                </a>
+                                                
+                                                <a href="OWASP Top 10: A03:2021-Injection" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    OWASP Top 10: A03:2021-Injection
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item vuln-card severity-critical">
+                    <h2 class="accordion-header" id="heading2">
+                        <button class="accordion-button collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-danger me-3">
+                                        CRITICAL
+                                    </span>
+                                    <h5 class="mb-0">SQLI</h5>
+                                </div>
+                                <div>
+                                    
+                                        <span class="param-label">参数: id</span>
+                                    
+                                    
+                                        <span class="ms-2 text-muted small">GET</span>
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#vulnAccordion">
+                        <div class="accordion-body pt-4">
+                            <div class="row g-4">
+                                <!-- 左列 -->
+                                <div class="col-md-6">
+                                    
+                                    <div class="mb-4">
+                                        <h6 class="text-muted mb-3">🔗 目标地址</h6>
+                                        <code class="d-block p-3 bg-light rounded">http://localhost/sql/Less-1/</code>
+                                    </div>
+                                    
+
+                                    
+                                    <div class="mb-4">
+                                        <h6 class="text-muted mb-3">💣 有效载荷</h6>
+                                        <pre class="p-3 bg-light rounded position-relative">
+                                            <span class="copy-btn position-absolute top-0 end-0 m-2 p-1" onclick="copyToClipboard(this)">
+                                                📋 复制
+                                            </span>
+                                            <code>&amp;#x27; UNION SELECT null,null--</code>
+                                        </pre>
+                                    </div>
+                                    
+                                </div>
+
+                                <!-- 右列 -->
+                                <div class="col-md-6">
+                                    <div class="h-100">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">📝 风险描述</h6>
+                                            <div class="p-3 bg-light rounded">
+                                                SQL注入漏洞允许攻击者通过构造恶意查询参数干涉数据库查询，可能导致数据泄露、数据篡改甚至服务器沦陷
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">🛠️ 修复建议</h6>
+                                            <ul class="list-group list-group-flush">
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    使用参数化查询（Prepared Statements）
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    实施严格的输入验证规则
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    启用Web应用防火墙(WAF)
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    定期更新数据库补丁
+                                                </li>
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    实施最小权限原则，限制数据库用户权限
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="text-muted mb-3">🔗 参考链接</h6>
+                                            <div class="list-group">
+                                                
+                                                <a href="OWASP SQL注入防护手册: https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    OWASP SQL注入防护手册:...
+                                                </a>
+                                                
+                                                <a href="CWE-89: SQL注入" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    CWE-89: SQL注入
+                                                </a>
+                                                
+                                                <a href="OWASP Top 10: A03:2021-Injection" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    OWASP Top 10: A03:2021-Injection
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item vuln-card severity-low">
+                    <h2 class="accordion-header" id="heading3">
+                        <button class="accordion-button collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-warning me-3">
+                                        LOW
+                                    </span>
+                                    <h5 class="mb-0">DEPENDENCY</h5>
+                                </div>
+                                <div>
+                                    
+                                        <span class="param-label">包名: selenium</span>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#vulnAccordion">
+                        <div class="accordion-body pt-4">
+                            <div class="row g-4">
+                                <!-- 左列 -->
+                                <div class="col-md-6">
+                                    
+
+                                    
+                                </div>
+
+                                <!-- 右列 -->
+                                <div class="col-md-6">
+                                    <div class="h-100">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">📝 风险描述</h6>
+                                            <div class="p-3 bg-light rounded">
+                                                
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">🛠️ 修复建议</h6>
+                                            <ul class="list-group list-group-flush">
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    请升级至无漏洞的安全版本
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="text-muted mb-3">🔗 参考链接</h6>
+                                            <div class="list-group">
+                                                
+                                                <a href="https://www.selenium.dev/downloads/" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://www.selenium.dev/downloads/
+                                                </a>
+                                                
+                                                <a href="https://huntr.dev/bounties/e268cd68-4f34-49bd-878b-82b96dcc0c99" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://huntr.dev/bounties/e268cd68-4...
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item vuln-card severity-low">
+                    <h2 class="accordion-header" id="heading4">
+                        <button class="accordion-button collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-warning me-3">
+                                        LOW
+                                    </span>
+                                    <h5 class="mb-0">DEPENDENCY</h5>
+                                </div>
+                                <div>
+                                    
+                                        <span class="param-label">包名: jinja2</span>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#vulnAccordion">
+                        <div class="accordion-body pt-4">
+                            <div class="row g-4">
+                                <!-- 左列 -->
+                                <div class="col-md-6">
+                                    
+
+                                    
+                                </div>
+
+                                <!-- 右列 -->
+                                <div class="col-md-6">
+                                    <div class="h-100">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">📝 风险描述</h6>
+                                            <div class="p-3 bg-light rounded">
+                                                Jinja2 sandbox escape via string formatting
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">🛠️ 修复建议</h6>
+                                            <ul class="list-group list-group-flush">
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    请升级至无漏洞的安全版本
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="text-muted mb-3">🔗 参考链接</h6>
+                                            <div class="list-group">
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-10906" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-1402" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-27516" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-0012" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-28493" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-56201" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-22195" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-34064" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-10745" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-56326" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="http://advisories.mageia.org/MGASA-2014-0028.html" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    http://advisories.mageia.org/MGASA-20...
+                                                </a>
+                                                
+                                                <a href="http://secunia.com/advisories/60738" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    http://secunia.com/advisories/60738
+                                                </a>
+                                                
+                                                <a href="https://access.redhat.com/errata/RHSA-2019:1152" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://access.redhat.com/errata/RHSA...
+                                                </a>
+                                                
+                                                <a href="https://access.redhat.com/errata/RHSA-2019:1022" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://access.redhat.com/errata/RHSA...
+                                                </a>
+                                                
+                                                <a href="https://snyk.io/vuln/SNYK-PYTHON-JINJA2-1012994" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://snyk.io/vuln/SNYK-PYTHON-JINJ...
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item vuln-card severity-low">
+                    <h2 class="accordion-header" id="heading5">
+                        <button class="accordion-button collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-warning me-3">
+                                        LOW
+                                    </span>
+                                    <h5 class="mb-0">DEPENDENCY</h5>
+                                </div>
+                                <div>
+                                    
+                                        <span class="param-label">包名: requests</span>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#vulnAccordion">
+                        <div class="accordion-body pt-4">
+                            <div class="row g-4">
+                                <!-- 左列 -->
+                                <div class="col-md-6">
+                                    
+
+                                    
+                                </div>
+
+                                <!-- 右列 -->
+                                <div class="col-md-6">
+                                    <div class="h-100">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">📝 风险描述</h6>
+                                            <div class="p-3 bg-light rounded">
+                                                Exposure of Sensitive Information to an Unauthorized Actor in Requests
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">🛠️ 修复建议</h6>
+                                            <ul class="list-group list-group-flush">
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    请升级至无漏洞的安全版本
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="text-muted mb-3">🔗 参考链接</h6>
+                                            <div class="list-group">
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-1830" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-35195" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-1829" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32681" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2015-2296" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-18074" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="http://www.ubuntu.com/usn/USN-2382-1" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    http://www.ubuntu.com/usn/USN-2382-1
+                                                </a>
+                                                
+                                                <a href="http://www.debian.org/security/2015/dsa-3146" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    http://www.debian.org/security/2015/dsa-3146
+                                                </a>
+                                                
+                                                <a href="http://www.ubuntu.com/usn/USN-2531-1" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    http://www.ubuntu.com/usn/USN-2531-1
+                                                </a>
+                                                
+                                                <a href="https://access.redhat.com/errata/RHSA-2019:2035" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://access.redhat.com/errata/RHSA...
+                                                </a>
+                                                
+                                                <a href="https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/psf/requests/secur...
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item vuln-card severity-low">
+                    <h2 class="accordion-header" id="heading6">
+                        <button class="accordion-button collapsed px-4 py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-warning me-3">
+                                        LOW
+                                    </span>
+                                    <h5 class="mb-0">DEPENDENCY</h5>
+                                </div>
+                                <div>
+                                    
+                                        <span class="param-label">包名: urllib3</span>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#vulnAccordion">
+                        <div class="accordion-body pt-4">
+                            <div class="row g-4">
+                                <!-- 左列 -->
+                                <div class="col-md-6">
+                                    
+
+                                    
+                                </div>
+
+                                <!-- 右列 -->
+                                <div class="col-md-6">
+                                    <div class="h-100">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">📝 风险描述</h6>
+                                            <div class="p-3 bg-light rounded">
+                                                urllib3&amp;#x27;s Proxy-Authorization request header isn&amp;#x27;t stripped during cross-origin redirects
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">🛠️ 修复建议</h6>
+                                            <ul class="list-group list-group-flush">
+                                                
+                                                <li class="list-group-item d-flex align-items-center py-2">
+                                                    <span class="me-2">✅</span>
+                                                    请升级至无漏洞的安全版本
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+
+                                        
+                                        <div class="mt-4">
+                                            <h6 class="text-muted mb-3">🔗 参考链接</h6>
+                                            <div class="list-group">
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-37891" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-28363" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45803" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-25091" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-7212" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-11324" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2021-33503" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-11236" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-9015" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-43804" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-26137" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20060" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://nvd.nist.gov/vuln/detail/CVE-...
+                                                </a>
+                                                
+                                                <a href="http://www.securityfocus.com/bid/93941" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    http://www.securityfocus.com/bid/93941
+                                                </a>
+                                                
+                                                <a href="https://access.redhat.com/errata/RHSA-2019:2272" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://access.redhat.com/errata/RHSA...
+                                                </a>
+                                                
+                                                <a href="https://access.redhat.com/errata/RHSA-2019:2272" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://access.redhat.com/errata/RHSA...
+                                                </a>
+                                                
+                                                <a href="https://access.redhat.com/errata/RHSA-2019:3335" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://access.redhat.com/errata/RHSA...
+                                                </a>
+                                                
+                                                <a href="https://github.com/advisories/GHSA-wqvq-5m8c-6g24" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/advisories/GHSA-wq...
+                                                </a>
+                                                
+                                                <a href="https://github.com/advisories/GHSA-hmv2-79q8-fv6g" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/advisories/GHSA-hm...
+                                                </a>
+                                                
+                                                <a href="https://github.com/advisories/GHSA-q2q7-5pp4-w6pg" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/advisories/GHSA-q2...
+                                                </a>
+                                                
+                                                <a href="https://github.com/urllib3/urllib3/security/advisories/GHSA-5phf-pp7p-vc2r" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/urllib3/urllib3/se...
+                                                </a>
+                                                
+                                                <a href="https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/urllib3/urllib3/se...
+                                                </a>
+                                                
+                                                <a href="https://github.com/urllib3/urllib3/issues/1510" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/urllib3/urllib3/is...
+                                                </a>
+                                                
+                                                <a href="https://github.com/urllib3/urllib3/security/advisories/GHSA-g4mx-q9vg-27p4" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center">
+                                                    <span class="me-2">🌐</span>
+                                                    https://github.com/urllib3/urllib3/se...
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="mt-5 py-4 text-center text-muted no-print">
+            <div class="border-top pt-4">
+                <p class="mb-1 small">📅 报告生成时间：2025-04-06 21:46</p>
+                <p class="mb-0 small">⚡ 扫描成功率：100%</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script>
+        // 复制功能增强
+        function copyToClipboard(element) {
+            const text = element.parentElement.querySelector('code').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                element.innerHTML = '✅ 已复制';
+                setTimeout(() => {
+                    element.innerHTML = '📋 复制';
+                }, 1500);
+            });
+        }
+
+        // 图表样式配置
+        Chart.defaults.font.family = 'system-ui';
+        Chart.defaults.color = '#7f8c8d';
+
+        // 风险分布图表
+        new Chart(document.getElementById('severityChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['严重', '高危', '中危', '低危'],
+                datasets: [{
+                    data: Object.values({
+                        critical: 2,
+                        high: 0,
+                        medium: 0,
+                        low: 4
+                    }),
+                    backgroundColor: [
+                        '#e74c3c',
+                        '#e67e22',
+                        '#f1c40f',
+                        '#3498db'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 20 }
+                    },
+                    tooltip: {
+                        bodyFont: { size: 14 },
+                        callbacks: {
+                            label: ctx => `${ctx.label}: ${ctx.raw} 个 (${ctx.percentage.toFixed(1)}%)`
+                        }
+                    }
+                }
+            }
+        });
+
+        // 漏洞类型图表
+        new Chart(document.getElementById('typeChart'), {
+            type: 'bar',
+            data: {
+                labels: ["dependency", "SQLi"],
+                datasets: [{
+                    label: '数量',
+                    data: [4, 2],
+                    backgroundColor: '#3498db',
+                    borderRadius: 4,
+                    barThickness: 28
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        bodyFont: { size: 14 },
+                        callbacks: {
+                            title: ctx => `${ctx.label} 漏洞`,
+                            label: ctx => `数量: ${ctx.raw} 个`
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

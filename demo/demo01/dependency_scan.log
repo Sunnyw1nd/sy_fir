@@ -1,0 +1,388 @@
+2025-04-06 14:52:56,945 - DependencyChecker - ERROR - rich响应格式错误
+2025-04-06 14:52:56,970 - DependencyChecker - ERROR - python-nmap响应格式错误
+2025-04-06 14:52:57,043 - DependencyChecker - ERROR - pdfkit响应格式错误
+2025-04-06 14:52:57,289 - DependencyChecker - ERROR - beautifulsoup4响应格式错误
+2025-04-06 14:52:58,267 - DependencyChecker - ERROR - colorama响应格式错误
+2025-04-06 14:52:58,605 - DependencyChecker - ERROR - packaging响应格式错误
+2025-04-06 14:52:58,626 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'} - could not convert string to float: 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'
+2025-04-06 14:52:58,627 - DependencyChecker - ERROR - 依赖检查失败: 'list' object has no attribute 'get'
+2025-04-06 14:52:58,694 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'} - could not convert string to float: 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'
+2025-04-06 14:52:58,695 - DependencyChecker - ERROR - 依赖检查失败: 'list' object has no attribute 'get'
+2025-04-06 14:52:59,669 - DependencyChecker - ERROR - argparse响应格式错误
+2025-04-06 14:52:59,895 - DependencyChecker - ERROR - 依赖检查失败: 'list' object has no attribute 'get'
+2025-04-06 14:53:02,601 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'} - could not convert string to float: 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'
+2025-04-06 14:53:02,602 - DependencyChecker - ERROR - 依赖检查失败: 'list' object has no attribute 'get'
+2025-04-06 15:22:49,105 - DependencyChecker - ERROR - beautifulsoup4响应格式错误: {}
+2025-04-06 15:22:49,114 - DependencyChecker - ERROR - rich响应格式错误: {}
+2025-04-06 15:22:49,156 - DependencyChecker - ERROR - pdfkit响应格式错误: {}
+2025-04-06 15:22:49,159 - DependencyChecker - ERROR - python-nmap响应格式错误: {}
+2025-04-06 15:22:50,501 - DependencyChecker - ERROR - colorama响应格式错误: {}
+2025-04-06 15:22:50,574 - DependencyChecker - ERROR - packaging响应格式错误: {}
+2025-04-06 15:22:50,778 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'}
+2025-04-06 15:22:50,778 - DependencyChecker - ERROR - 检查 selenium 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:51,331 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'}
+2025-04-06 15:22:51,332 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N'}
+2025-04-06 15:22:51,332 - DependencyChecker - ERROR - 检查 jinja2 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:51,548 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'}
+2025-04-06 15:22:51,548 - DependencyChecker - ERROR - 检查 selenium 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:51,868 - DependencyChecker - ERROR - argparse响应格式错误: {}
+2025-04-06 15:22:52,014 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N'}
+2025-04-06 15:22:52,015 - DependencyChecker - ERROR - 检查 requests 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:52,206 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'}
+2025-04-06 15:22:52,208 - DependencyChecker - ERROR - 检查 selenium 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:53,929 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N'}
+2025-04-06 15:22:53,929 - DependencyChecker - ERROR - 检查 requests 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:53,996 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'}
+2025-04-06 15:22:53,997 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N'}
+2025-04-06 15:22:53,997 - DependencyChecker - ERROR - 检查 jinja2 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:54,494 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'}
+2025-04-06 15:22:54,495 - DependencyChecker - ERROR - 检查 urllib3 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:55,869 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N'}
+2025-04-06 15:22:55,870 - DependencyChecker - ERROR - 检查 requests 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:56,166 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'}
+2025-04-06 15:22:56,166 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N'}
+2025-04-06 15:22:56,167 - DependencyChecker - ERROR - 检查 jinja2 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:22:57,298 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'}
+2025-04-06 15:22:57,299 - DependencyChecker - ERROR - 检查 urllib3 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:23:00,371 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'}
+2025-04-06 15:23:00,371 - DependencyChecker - ERROR - 检查 urllib3 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:26,465 - DependencyChecker - ERROR - python-nmap响应格式错误: {}
+2025-04-06 15:25:26,474 - DependencyChecker - ERROR - rich响应格式错误: {}
+2025-04-06 15:25:26,528 - DependencyChecker - ERROR - beautifulsoup4响应格式错误: {}
+2025-04-06 15:25:27,118 - DependencyChecker - ERROR - pdfkit响应格式错误: {}
+2025-04-06 15:25:27,938 - DependencyChecker - ERROR - colorama响应格式错误: {}
+2025-04-06 15:25:28,162 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'}
+2025-04-06 15:25:28,162 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N'}
+2025-04-06 15:25:28,163 - DependencyChecker - ERROR - 检查 jinja2 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:28,192 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'}
+2025-04-06 15:25:28,193 - DependencyChecker - ERROR - 检查 selenium 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:28,527 - DependencyChecker - ERROR - packaging响应格式错误: {}
+2025-04-06 15:25:28,851 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'}
+2025-04-06 15:25:28,852 - DependencyChecker - ERROR - 检查 selenium 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:29,461 - DependencyChecker - ERROR - argparse响应格式错误: {}
+2025-04-06 15:25:29,507 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N'}
+2025-04-06 15:25:29,508 - DependencyChecker - ERROR - 检查 requests 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:29,605 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H'}
+2025-04-06 15:25:29,606 - DependencyChecker - ERROR - 检查 selenium 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:30,362 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'}
+2025-04-06 15:25:30,362 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N'}
+2025-04-06 15:25:30,363 - DependencyChecker - ERROR - 检查 jinja2 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:31,263 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N'}
+2025-04-06 15:25:31,264 - DependencyChecker - ERROR - 检查 requests 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:32,383 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N'}
+2025-04-06 15:25:32,383 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:H/SI:N/SA:N'}
+2025-04-06 15:25:32,384 - DependencyChecker - ERROR - 检查 jinja2 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:32,798 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'}
+2025-04-06 15:25:32,798 - DependencyChecker - ERROR - 检查 urllib3 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:33,005 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V4', 'score': 'CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N'}
+2025-04-06 15:25:33,005 - DependencyChecker - ERROR - 检查 requests 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:35,891 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'}
+2025-04-06 15:25:35,892 - DependencyChecker - ERROR - 检查 urllib3 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:25:39,123 - DependencyChecker - ERROR - CVSS分数解析失败: {'type': 'CVSS_V3', 'score': 'CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N'}
+2025-04-06 15:25:39,123 - DependencyChecker - ERROR - 检查 urllib3 时出现未知错误: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\demo01\core\dependency_checker.py", line 147, in check_package
+    'affected_versions': vuln.get('affected', {}).get('versions'),
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-04-06 15:28:36,316 - DependencyChecker - ERROR - beautifulsoup4响应格式错误: {}
+2025-04-06 15:28:36,338 - DependencyChecker - ERROR - python-nmap响应格式错误: {}
+2025-04-06 15:28:36,345 - DependencyChecker - ERROR - pdfkit响应格式错误: {}
+2025-04-06 15:28:36,365 - DependencyChecker - ERROR - rich响应格式错误: {}
+2025-04-06 15:28:37,711 - DependencyChecker - ERROR - colorama响应格式错误: {}
+2025-04-06 15:28:37,728 - DependencyChecker - ERROR - packaging响应格式错误: {}
+2025-04-06 15:28:39,111 - DependencyChecker - ERROR - argparse响应格式错误: {}
+2025-04-06 15:40:58,457 - DependencyChecker - ERROR - rich响应格式错误: {}
+2025-04-06 15:40:58,467 - DependencyChecker - ERROR - beautifulsoup4响应格式错误: {}
+2025-04-06 15:40:58,475 - DependencyChecker - ERROR - pdfkit响应格式错误: {}
+2025-04-06 15:40:58,482 - DependencyChecker - ERROR - python-nmap响应格式错误: {}
+2025-04-06 15:40:59,874 - DependencyChecker - ERROR - colorama响应格式错误: {}
+2025-04-06 15:40:59,879 - DependencyChecker - ERROR - packaging响应格式错误: {}
+2025-04-06 15:41:01,333 - DependencyChecker - ERROR - argparse响应格式错误: {}
+2025-04-06 15:57:36,850 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 15:57:36,854 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 15:57:36,870 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 15:57:36,875 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 15:57:38,237 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 15:57:38,259 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 15:57:39,613 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:52,019 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:52,027 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:52,061 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:52,074 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:53,415 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:53,444 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:08:54,795 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:52,713 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:52,716 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:52,725 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:52,897 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:54,156 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:54,323 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:12:55,554 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:17,780 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:17,813 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:17,831 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:17,865 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:19,842 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:20,797 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:50:21,354 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:48,707 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:48,718 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:48,721 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:48,759 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:50,254 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:50,291 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 17:53:51,792 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:22,717 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:22,746 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:22,755 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:22,783 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:24,243 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:24,341 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:06:25,792 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:46,710 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:46,716 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:46,717 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:47,308 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:48,212 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:48,845 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 18:10:49,734 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:07,645 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:07,678 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:07,764 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:07,767 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:09,196 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:09,270 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:41:10,707 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:10,326 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:10,327 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:10,333 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:10,547 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:11,841 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:12,047 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:49:13,419 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:01,602 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:01,603 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:01,604 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:01,610 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:03,149 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:03,150 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 19:56:04,705 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:41,756 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:41,833 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:41,890 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:42,755 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:43,202 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:44,165 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:17:44,559 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:54,513 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:54,532 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:54,540 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:54,558 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:55,908 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:55,955 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:20:57,280 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:52,645 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:52,669 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:52,701 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:52,729 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:54,223 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:54,289 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:43:55,782 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:44,993 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:44,994 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:45,522 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:45,522 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:46,613 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:47,083 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 20:56:48,187 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:09,222 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:09,272 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:10,127 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:10,127 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:10,843 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:11,684 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:07:12,474 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:30,573 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:30,713 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:30,721 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:30,769 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:32,281 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:32,320 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:19:33,880 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:23:57,058 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:23:57,122 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:23:57,356 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:23:57,386 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:23:58,735 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:23:58,958 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:24:00,572 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:39,648 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:39,670 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:39,686 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:40,011 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:41,246 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:41,576 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:25:42,844 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:29,393 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:29,438 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:29,459 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:29,541 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:30,839 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:30,949 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:30:32,749 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:43,426 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:43,467 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:43,506 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:44,716 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:45,059 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:46,319 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:36:46,884 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:44,642 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:44,643 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:44,751 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:44,877 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:46,252 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:46,442 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:40:47,809 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:17,397 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:17,498 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:17,515 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:18,517 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:19,127 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:20,078 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:41:20,681 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:42:06,020 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:42:06,066 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:42:06,092 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:42:06,367 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:30,998 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:31,026 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:31,085 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:31,091 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:32,630 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:32,652 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:46:34,190 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:22,364 - DependencyChecker - DEBUG - python-nmap 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:22,367 - DependencyChecker - DEBUG - beautifulsoup4 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:22,376 - DependencyChecker - DEBUG - rich 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:22,458 - DependencyChecker - DEBUG - pdfkit 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:23,920 - DependencyChecker - DEBUG - colorama 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:24,064 - DependencyChecker - DEBUG - packaging 没有返回漏洞数据 (可能无漏洞): {}
+2025-04-06 21:49:25,790 - DependencyChecker - DEBUG - argparse 没有返回漏洞数据 (可能无漏洞): {}

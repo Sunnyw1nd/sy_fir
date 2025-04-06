@@ -1,0 +1,13 @@
+beautifulsoup4>=4.9.3
+rich>=10.0.0
+pdfkit>=1.0.0
+python-nmap>=0.7.1
+jinja2>=3.0.0
+selenium>=4.0.0
+colorama>=0.4.4
+requests~=2.31.0
+packaging~=24.1
+# 请确保安装 wkhtmltopdf 并将其路径添加到环境变量 PATH 中。下载地址：https://wkhtmltopdf.org/downloads.html
+# Windows请安装nmap。 下载地址：https://nmap.org/download.html#windows
+urllib3~=2.2.1
+argparse~=1.4.0
